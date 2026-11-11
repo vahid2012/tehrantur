@@ -1,0 +1,72 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import FloatingInstagram from '../components/FloatingInstagram.astro';
+import { pages } from '../data/pages';
+
+const allLinks = [
+  { title: 'الرئيسية', href: '/', category: 'رئيسي' },
+  { title: 'من نحن', href: '/about', category: 'رئيسي' },
+  { title: 'الصناعات اليدوية', href: '/iran/handicrafts', category: 'رئيسي' },
+  ...pages.map((p) => ({ title: p.title, href: `/${p.slug}`, category: p.category })),
+];
+
+const categoryLabels: Record<string, string> = {
+  'رئيسي': 'صفحات رئيسية',
+  'tehran': 'طهران',
+  'iran': 'إيران',
+  'medical': 'السياحة العلاجية',
+  'import': 'الاستيراد',
+};
+
+const grouped: Record<string, typeof allLinks> = {};
+for (const link of allLinks) {
+  if (!grouped[link.category]) grouped[link.category] = [];
+  grouped[link.category].push(link);
+}
+
+const orderedCategories = ['رئيسي', 'iran', 'tehran', 'medical', 'import'];
+---
+
+<Base
+  title="خريطة الموقع | آکای تراول"
+  description="خريطة موقع آکای تراول — جميع الصفحات والأدلة السياحية والعلاجية والتجارية في مكان واحد."
+  breadcrumbs={[{ name: 'خريطة الموقع', href: '/sitemap' }]}
+>
+  <Header slot="header" />
+  <Footer slot="footer" />
+  <FloatingWhatsApp />
+  <FloatingInstagram />
+
+  <main>
+    <section class="py-16 bg-ink-50 min-h-[60vh]">
+      <div class="max-w-5xl mx-auto px-4">
+        <h1 class="text-3xl md:text-4xl font-bold text-ink-800 mb-8 text-center">خريطة الموقع</h1>
+
+        {orderedCategories.map((cat) => {
+          const links = grouped[cat];
+          if (!links || links.length === 0) return null;
+          return (
+            <div class="mb-10">
+              <h2 class="text-xl font-bold text-primary-600 mb-4 pb-2 border-b-2 border-primary-200">
+                {categoryLabels[cat] ?? cat}
+              </h2>
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {links.map((link) => (
+                  <a
+                    href={link.href}
+                    class="bg-white rounded-xl p-4 border border-ink-200 hover:border-primary-300 hover:shadow-md transition-all text-ink-700 hover:text-primary-600"
+                  >
+                    {link.title}
+                  </a>
+                ))}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </section>
+  </main>
+</Base>

@@ -1,0 +1,25 @@
+---
+export interface Props {
+  items: Array<{ name: string; href: string }>;
+}
+
+const { items = [] } = Astro.props;
+const allItems = [{ name: 'الرئيسية', href: '/' }, ...items];
+---
+
+<nav aria-label="مسار التنقل" class="bg-ink-100 border-b border-ink-200">
+  <div class="max-w-7xl mx-auto px-4 py-3">
+    <ol class="flex items-center gap-2 text-sm text-ink-500 flex-wrap">
+      {allItems.map((item, i) => (
+        <li class="flex items-center gap-2">
+          {i < allItems.length - 1 ? (
+            <a href={item.href} class="hover:text-primary-600 transition-colors">{item.name}</a>
+          ) : (
+            <span class="text-ink-700 font-medium">{item.name}</span>
+          )}
+          {i < allItems.length - 1 && <span class="text-ink-300">/</span>}
+        </li>
+      ))}
+    </ol>
+  </div>
+</nav>

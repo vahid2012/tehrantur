@@ -1,0 +1,198 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import FloatingInstagram from '../components/FloatingInstagram.astro';
+
+const sections = [
+  {
+    title: 'إيران',
+    description: 'اكتشف جمال إيران — من طهران إلى شيراز وأصفهان، جولات سياحية شاملة للمسافرين العرب.',
+    href: '/iran',
+    image: 'https://images.pexels.com/photos/33132523/pexels-photo-33132523.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    icon: 'M3.055 13H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
+  },
+  {
+    title: 'طهران',
+    description: 'العاصمة الإيرانية النابضة بالحياة — برج آزادي، البازار الكبير، والمتاحف العالمية.',
+    href: '/tehran',
+    image: 'https://images.pexels.com/photos/29786929/pexels-photo-29786929.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5',
+  },
+  {
+    title: 'العلاج في إيران',
+    description: 'سياحة علاجية بأحدث المستشفيات وأمهر الأطباء بتكاليف مناسبة للمواطنين الخليجيين.',
+    href: '/medical-tourism',
+    image: 'https://images.pexels.com/photos/6129152/pexels-photo-6129152.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z',
+  },
+  {
+    title: 'الاستيراد',
+    description: 'خدمات استيراد البضائع من إيران إلى دول الخليج — تراخيص، شحن، وتخليص جمركي كامل.',
+    href: '/import',
+    image: 'https://images.pexels.com/photos/163726/belgium-antwerp-shipping-container-163726.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    icon: 'M3 7h18M3 12h18M3 17h18',
+  },
+  {
+    title: 'الصناعات اليدوية',
+    description: 'أجود السجاد الفارسي والتحف الفنية الإيرانية — مباشرة من الحرفيين إلى منزلك.',
+    href: '/iran/handicrafts',
+    image: 'https://images.pexels.com/photos/39411316/pexels-photo-39411316.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    icon: 'M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4',
+  },
+  {
+    title: 'من نحن',
+    description: 'تعرف على فريق آکای تراول وخبرتنا في خدمة المسافرين العرب منذ سنوات.',
+    href: '/about',
+    image: 'https://images.pexels.com/photos/30535790/pexels-photo-30535790.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z',
+  },
+  {
+    title: 'الوجهات السياحية',
+    description: 'استكشف أصفهان وشيراز ويزد وتبريز — مدن التاريخ والثقافة والجمال الإيراني.',
+    href: '/iran',
+    image: 'https://images.pexels.com/photos/12740233/pexels-photo-12740233.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    icon: 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z',
+  },
+  {
+    title: 'اتصل بنا',
+    description: 'تواصل معنا مباشرة عبر واتساب أو إنستغرام لخدمة فورية وسريعة على مدار الساعة.',
+    href: '/contact',
+    image: 'https://images.pexels.com/photos/30535790/pexels-photo-30535790.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    icon: 'M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z',
+  },
+];
+
+const relatedArticles = [
+  { title: 'أفضل 10 وجهات سياحية في إيران', href: '/iran', description: 'دليل شامل لأهم المدن والمعالم السياحية التي يجب زيارتها.' },
+  { title: 'دليل العلاج في إيران للمواطنين الخليجيين', href: '/medical-tourism', description: 'كل ما تحتاج معرفته عن السياحة العلاجية في إيران.' },
+  { title: 'الصناعات اليدوية الإيرانية الأصلية', href: '/iran/handicrafts', description: 'سجاد فارسي وفيروز وفضة — تسوق مباشر من إيران.' },
+];
+---
+
+<Base
+  title="آکای تراول | سياحة وعلاج واستيراد من إيران"
+  description="آکای تراول — وكالة سفر متخصصة في السياحة والعلاج والاستيراد من إيران للمسافرين العرب من دول الخليج. جولات سياحية، سياحة علاجية، استيراد بضائع، وصناعات يدوية إيرانية."
+  breadcrumbs={[]}
+  relatedArticles={relatedArticles}
+>
+  <slot name="header-content" set:html="" />
+
+  <Header slot="header" />
+  <Footer slot="footer" />
+  <FloatingWhatsApp />
+  <FloatingInstagram />
+
+  <main>
+    <section class="relative min-h-[600px] flex items-center overflow-hidden">
+      <div class="absolute inset-0 z-0">
+        <img
+          src="https://images.pexels.com/photos/33132523/pexels-photo-33132523.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+          alt="إيران — أصفهان"
+          class="w-full h-full object-cover"
+          fetchpriority="high"
+        />
+        <div class="absolute inset-0 bg-gradient-to-l from-ink-900/90 via-ink-900/70 to-ink-900/40"></div>
+      </div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-4 py-20 w-full">
+        <div class="max-w-2xl">
+          <span class="inline-block bg-primary-500/20 text-primary-300 text-sm font-medium px-4 py-1.5 rounded-full mb-4 border border-primary-500/30">
+            وكالة سفر متخصصة في إيران
+          </span>
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+            اكتشف إيران مع <span class="text-primary-400">آکای تراول</span>
+          </h1>
+          <p class="text-lg text-ink-200 mb-8 leading-relaxed">
+            سياحة، علاج، استيراد، وصناعات يدوية — خدمات متكاملة للمسافرين العرب من دول الخليج العربي بخبرة سنوات.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a
+              href="https://wa.me/989143403431"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 bg-secondary-500 hover:bg-secondary-600 text-white font-medium px-6 py-3 rounded-xl transition-colors shadow-lg"
+            >
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+              </svg>
+              تواصل عبر واتساب
+            </a>
+            <a
+              href="/iran"
+              class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-medium px-6 py-3 rounded-xl transition-colors border border-white/20 backdrop-blur-sm"
+            >
+              استكشف إيران
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 md:py-24 bg-ink-50">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-ink-800 mb-4">خدماتنا</h2>
+          <p class="text-ink-500 text-lg max-w-2xl mx-auto">
+            خدمات متكاملة تلبي جميع احتياجاتك في إيران — من السياحة إلى العلاج والاستيراد
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {sections.map((section, i) => (
+            <a
+              href={section.href}
+              class="group bg-white rounded-2xl overflow-hidden card-hover border border-ink-200 block fade-up"
+              style={`animation-delay: ${i * 0.08}s`}
+            >
+              <div class="relative h-48 overflow-hidden">
+                <img
+                  src={section.image}
+                  alt={section.title}
+                  loading="lazy"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-ink-900/60 to-transparent"></div>
+                <div class="absolute bottom-3 right-3 w-10 h-10 rounded-lg bg-white/90 flex items-center justify-center">
+                  <svg class="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={section.icon} />
+                  </svg>
+                </div>
+              </div>
+              <div class="p-5">
+                <h3 class="text-lg font-bold text-ink-800 mb-2 group-hover:text-primary-600 transition-colors">
+                  {section.title}
+                </h3>
+                <p class="text-ink-500 text-sm leading-relaxed">{section.description}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 bg-gradient-to-l from-primary-600 to-primary-800 text-white">
+      <div class="max-w-7xl mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold mb-4">جاهز لرحلتك إلى إيران؟</h2>
+        <p class="text-lg text-primary-100 mb-8 max-w-2xl mx-auto">
+          تواصل معنا الآن واحصل على استشارة مجانية لخطط سفرنا أو خدماتنا
+        </p>
+        <a
+          href="https://wa.me/989143403431"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 bg-white text-primary-700 font-bold px-8 py-4 rounded-xl hover:bg-primary-50 transition-colors shadow-xl"
+        >
+          <svg class="w-6 h-6 text-secondary-500" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+          </svg>
+          تواصل معنا الآن
+        </a>
+      </div>
+    </section>
+  </main>
+</Base>
